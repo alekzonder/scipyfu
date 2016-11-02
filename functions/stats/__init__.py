@@ -4,8 +4,9 @@ import traceback
 
 import ttest_ind
 import ttest_rel
+import shapiro
 
-functions = [ttest_ind, ttest_rel]
+functions = [ttest_ind, ttest_rel, shapiro]
 
 blueprint = Blueprint('stats', __name__)
 
@@ -29,13 +30,16 @@ def create_post(m):
             tb = traceback.format_exc()
             return tb, 500
 
-        return jsonify({'result': result})
+        return jsonify(result)
 
     function.__name__ = m.name
     return function
 
 
+names = []
+
 for m in functions:
+    names.append(m.name)
     blueprint.add_url_rule(
         '/' + m.name,
         endpoint=m.name + '_get',
@@ -49,3 +53,8 @@ for m in functions:
         view_func=create_post(m),
         methods=['POST']
     )
+
+def get_info():
+    return jsonify(dict(functions=names))
+
+blueprint.add_url_rule('/', endpoint='info', view_func=get_info, methods=['GET'])
