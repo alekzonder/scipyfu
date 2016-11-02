@@ -5,8 +5,9 @@ import traceback
 import ttest_ind
 import ttest_rel
 import shapiro
+import mannwhitneyu
 
-functions = [ttest_ind, ttest_rel, shapiro]
+functions = [ttest_ind, ttest_rel, shapiro, mannwhitneyu]
 
 blueprint = Blueprint('stats', __name__)
 
@@ -39,7 +40,9 @@ def create_post(m):
 names = []
 
 for m in functions:
+
     names.append(m.name)
+
     blueprint.add_url_rule(
         '/' + m.name,
         endpoint=m.name + '_get',
@@ -53,6 +56,21 @@ for m in functions:
         view_func=create_post(m),
         methods=['POST']
     )
+
+    if hasattr(m, 'alias'):
+        blueprint.add_url_rule(
+            '/' + m.alias,
+            endpoint=m.alias + '_get',
+            view_func=create_get(m),
+            methods=['GET']
+        )
+
+        blueprint.add_url_rule(
+            '/' + m.alias,
+            endpoint=m.alias + '_post',
+            view_func=create_post(m),
+            methods=['POST']
+        )
 
 def get_info():
     return jsonify(dict(functions=names))

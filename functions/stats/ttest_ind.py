@@ -9,7 +9,8 @@ info = {
     'docs': 'http://scipy.github.io/devdocs/generated/scipy.stats.ttest_ind.html#scipy.stats.ttest_ind',
     'params': {
         'a': 'array',
-        'b': 'array'
+        'b': 'array',
+        'equal_var': 'Bool'
     }
 }
 

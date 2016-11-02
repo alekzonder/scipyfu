@@ -6,7 +6,7 @@ name = 'shapiro'
 info = {
     'function': 'shapiro',
     'method': 'POST',
-    'docs': 'http://scipy.github.io/devdocs/generated/scipy.stats.shapiro.html#scipy.stats.shapiro',
+    'docs': 'http://scipy.github.io/devdocs/generated/scipy.stats.shapiro.html',
     'params': {
         'a': 'array'
     }
@@ -19,6 +19,5 @@ def fn(data):
     raw_result = shapiro(a)
 
     return dict(
-        result={'statistics': raw_result[0], 'pvalue': raw_result[1]},
-        raw_result=raw_result
+        result={'statistics': raw_result[0], 'pvalue': raw_result[1]}
     )
