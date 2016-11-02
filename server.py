@@ -1,10 +1,12 @@
 from StringIO import StringIO
 from flask import Flask, request, jsonify
+from flask_cors import CORS, cross_origin
 import traceback
 
 import functions.stats as stats
 
 app = Flask(__name__)
+CORS(app)
 
 app.register_blueprint(stats, url_prefix='/stats')
 

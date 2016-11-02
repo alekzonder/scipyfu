@@ -13,3 +13,4 @@ scipy==0.18.1
 six==1.10.0
 statsmodels==0.6.1
 wsgiref==0.1.2
+Flask-Cors==2.1.2
