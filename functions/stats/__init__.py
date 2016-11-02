@@ -3,8 +3,9 @@ from flask import request, jsonify
 import traceback
 
 import ttest_ind
+import ttest_rel
 
-functions = [ttest_ind]
+functions = [ttest_ind, ttest_rel]
 
 blueprint = Blueprint('stats', __name__)
 
