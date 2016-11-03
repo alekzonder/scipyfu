@@ -1,4 +1,4 @@
-# pyfia
+# scipyfu
 
 http rest api for python data analytics functions from numpy, scipy ...
 
