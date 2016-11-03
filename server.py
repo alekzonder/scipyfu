@@ -6,9 +6,10 @@ import traceback
 import functions.stats as stats
 
 app = Flask(__name__)
-CORS(app)
+CORS(app, origins="*", send_wildcard=True)
 
 app.register_blueprint(stats, url_prefix='/stats')
+
 
 def index():
     return jsonify(dict(modules=['stats']))
